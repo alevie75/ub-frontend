@@ -32,6 +32,9 @@
   background-image: url("./images/temp_snowing.jpg"); 
   height: 100vh;
   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #signinForm{

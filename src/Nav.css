@@ -1,17 +1,21 @@
 .navbar{
     display: flex;
     flex-direction: row;
-    height: 80px;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .nav-icon-outer{
     display: block;
     justify-content: center;
+    background-color: white;
+    width: 33%;
+    border: 2px solid black;
 }
 
 .nav-icon{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 40px;
-    width: 40px;
+    height: 100px;
+    width: 100px;
 }
