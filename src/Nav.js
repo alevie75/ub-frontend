@@ -1,7 +1,7 @@
 import './Nav.css';
 import { Link } from 'react-router-dom'
 import ShovelIcon from './images/shovel.png'
-import ProfileIcon from './images/Profile.png'
+import ProfileIcon from './images/profile.png'
 import MapPic from './images/Map.png'
 
 function Navbar() {
