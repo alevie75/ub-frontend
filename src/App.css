@@ -13,6 +13,10 @@
   }
 }
 
+body{
+  font-family: sans-serif;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,7 +32,7 @@
   color: #61dafb;
 }
 
-#signIn{
+#signIn, #homeDiv{
   background-image: url("./images/temp_snowing.jpg"); 
   height: 100vh;
   padding-top: 30px;
@@ -37,7 +41,8 @@
   justify-content: center;
 }
 
-#signinForm{
+
+#signinForm, #smallerHomeDiv{
   background-color:lightskyblue;
   border: 2px solid black;
   padding: 10px;
