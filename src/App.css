@@ -28,6 +28,36 @@
   color: #61dafb;
 }
 
+#signIn{
+  background-image: url("./images/temp_snowing.jpg"); 
+  height: 100vh;
+  padding-top: 30px;
+}
+
+#signinForm{
+  background-color:lightskyblue;
+  border: 2px solid black;
+  padding: 10px;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signinFormlabel, .signinFormInput{
+  padding: 5px;
+}
+
+.signinFormInput{
+  border-radius: 25px;
+}
+
+#signinFormSubmit{
+  padding: 8x;
+  margin-top: 8px;
+  border-radius: 25px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
