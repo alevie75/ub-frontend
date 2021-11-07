@@ -3,15 +3,18 @@ import React from "react";
 class Login extends React.Component {
     render() {
         return (
-            <div>
-                <form>
-                    <label htmlFor="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required />
+            <div id="signIn">
+                <form id="signinForm">
+                    <label className="signinFormlabel" htmlFor="uname"><b>Username</b></label>
+                    <input className="signinFormInput" type="text" placeholder="Username" name="uname" required />
 
-                    <label htmlFor="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required />
+                    <br />
 
-                    <button type="submit">Login</button>
+                    <label className="signinFormlabel" htmlFor="psw"><b>Password</b></label>
+                    <input className="signinFormInput" type="password" placeholder="Password" name="psw" required />
+                    <br />
+
+                    <button id="signinFormSubmit" type="submit">Login</button>
                 </form>
             </div>
         );
