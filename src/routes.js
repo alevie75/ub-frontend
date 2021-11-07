@@ -6,7 +6,10 @@ import { Routes, Route} from 'react-router-dom';
  */
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Home from './pages/Home.js'
+import Home from './pages/Home.js';
+import UBMap from './pages/Map';
+import Profile from './pages/Profile'
+import Jobs from './pages/Jobs'
 
 /**
  * All routes go here.
@@ -19,6 +22,9 @@ class UBRoutes extends React.Component {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Register />} />
+                <Route path="/map" element={<UBMap />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/jobs" element={<Jobs />} />
             </Routes>
         );
     }
