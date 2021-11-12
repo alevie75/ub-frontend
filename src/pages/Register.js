@@ -1,28 +1,100 @@
 import React from "react";
+import Cookies from "js-cookie";
+import {Navigate} from "react-router-dom";
 
 class Register extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {redirect: null, userCreated: false}
+        this.createNewUser = this.createNewUser.bind(this);
+    }
+
+    async createNewUser(event){
+        console.log("trying to create user");
+        function setFailure() {
+            document.getElementById("FormStatus").innerText = "User Creation Failed, Please Try Again";
+        }
+
+        let username = event.target.uname.value;
+        let password = event.target.psw.value;
+        let fname = event.target.fname.value;
+        let lname = event.target.lname.value;
+        event.preventDefault()
+        const response = await fetch("/register", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'username': username,
+                'password': password,
+                'firstName': fname,
+                'lastName': lname,
+                'location': "",
+            })
+        })
+        const responseJSON = await response.json()
+        if (response.status > 200) {
+            setFailure()
+            return
+        }
+        this.setState({userCreated: true})
+    }
+
+    componentDidMount() {
+        let redir = this.props.checkLogin()
+        if ( redir == null){
+            return
+        }
+        this.setState({redirect: redir});
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let redir = this.props.checkLogin()
+        if ( redir == null){
+            return
+        }
+        this.setState({redirect: redir});
+    }
+
     render() {
+        if (this.state.userCreated){
+            return (
+                <Navigate replace to="/login" />
+            );
+        }
+        if (this.state.redirect){
+            return (
+                <Navigate replace to="/map" />
+            );
+        }
         return (
-            <div>
-                <form>
-                    <label class="inputBox" htmlFor="uname">Username</label>
-                    <input type="text" placeholder="Enter Username" name="uname" required />
+            <div id="SignUp">
+                <form className="UBForm" onSubmit={this.createNewUser}>
+                    <label className="FormLabel" htmlFor="uname"><b>Username</b></label>
+                    <input className="FormInput" type="text" placeholder="Enter Username" name="uname" required />
 
-                    <label class="inputBox" htmlFor="psw">Password</label>
-                    <input type="password" placeholder="Enter Password" name="psw" required <br>/>
+                    <br />
 
-                    <label class="inputBox" htmlFor="fname">Firstname</label>
-                    <input type="text" placeholder="Enter Firstname" name="fname" required />
+                    <label className="FormLabel" htmlFor="psw"><b>Password</b></label>
+                    <input className="FormInput" type="password" placeholder="Enter Password" name="psw" required />
 
-                    <label class="inputBox" htmlFor="lname">Lastname</label>
-                    <input type="lname" placeholder="Enter Lastname" name="lname" required />
+                    <br />
 
-                    <label class="inputBox">
-                    <button type="submit">Register</button>
+                    <label className="FormLabel" htmlFor="fname"><b>Firstname</b></label>
+                    <input className="FormInput" type="text" placeholder="Enter Firstname" name="fname" required />
 
-                    create submit button
-                    send data to API and then take user to home
+                    <br />
 
+                    <label className="FormLabel" htmlFor="lname"><b>Lastname</b></label>
+                    <input className="FormInput" type="lname" placeholder="Enter Lastname" name="lname" required />
+
+                    <br />
+
+                    <button className="UBFormSubmit" type="submit">Register</button>
+                    <div className="FormStatus" />
                 </form>
             </div>
         );

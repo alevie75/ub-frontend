@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, Navigate} from 'react-router-dom';
 
 /**
  * Import all page components here
@@ -19,12 +19,13 @@ class UBRoutes extends React.Component {
     render() {
         return (
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Register />} />
-                <Route path="/map" element={<UBMap />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/jobs" element={<Jobs />} />
+                <Route path="/" element={<Home  checkLogin={this.props.checkLogin} />} />
+                <Route path="/login" element={<Login checkLogin={this.props.checkLogin} />} />
+                <Route path="/signup" element={<Register checkLogin={this.props.checkLogin} />} />
+                <Route path="/register" element={<Navigate replace to="/signup" />} />
+                <Route path="/map" element={<UBMap checkLogin={this.props.checkLogin} />} />
+                <Route path="/profile" element={<Profile checkLogin={this.props.checkLogin} />} />
+                <Route path="/jobs" element={<Jobs checkLogin={this.props.checkLogin} />} />
             </Routes>
         );
     }

@@ -1,10 +1,35 @@
 import React from "react";
-import PropTypes from 'prop-types'
-import {Link} from "react-router-dom";
-import HomeLogoIcon from "../images/house.png";
+import {Link, Navigate} from "react-router-dom";
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {redirect: null};
+    }
+
+    componentDidMount() {
+        let redir = this.props.checkLogin()
+        if ( redir == null){
+            return
+        }
+        this.setState({redirect: redir});
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let redir = this.props.checkLogin()
+        if ( redir == null){
+            return
+        }
+        this.setState({redirect: redir});
+    }
+
     render() {
+        if (this.state.redirect) {
+            return (
+                <Navigate replace to="/map" />
+            );
+        }
         return (
             <div id = "homeDiv">
                 <div id="smallerHomeDiv">
