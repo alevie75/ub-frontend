@@ -21,7 +21,7 @@ class Register extends React.Component {
         let fname = event.target.fname.value;
         let lname = event.target.lname.value;
         event.preventDefault()
-        const response = await fetch("/register", {
+        const response = await fetch(this.props.basePath + "/register", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -43,24 +43,8 @@ class Register extends React.Component {
         this.setState({userCreated: true})
     }
 
-    componentDidMount() {
-        let redir = this.props.checkLogin()
-        if ( redir == null){
-            return
-        }
-        this.setState({redirect: redir});
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        let redir = this.props.checkLogin()
-        if ( redir == null){
-            return
-        }
-        this.setState({redirect: redir});
-    }
-
     render() {
-        if (this.state.userCreated){
+        if ( this.props.checkLogin() != null){
             return (
                 <Navigate replace to="/login" />
             );

@@ -19,7 +19,7 @@ class Login extends React.Component {
         let username = event.target.uname.value;
         let password = event.target.psw.value;
         event.preventDefault()
-        const response = await fetch("/login", {
+        const response = await fetch(this.props.basePath + "/login", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -32,33 +32,17 @@ class Login extends React.Component {
         })
         const responseJSON = await response.json()
         if (response.status > 200) {
+            console.log("Login failure: " + response.status)
             setFailure()
             return
         }
+        console.log("login successful")
         Cookies.set('token', responseJSON["token"], {expires: 1})
         this.setState({redirect: "Login Successful!"})
     }
 
-    componentDidMount() {
-        let redir = this.props.checkLogin()
-        if ( redir == null){
-            return;
-        }
-        console.log("logged in")
-        this.setState({redirect: redir});
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        let redir = this.props.checkLogin()
-        if ( redir == null){
-            return;
-        }
-        console.log("logged in")
-        this.setState({redirect: redir});
-    }
-
     render() {
-        if (this.state.redirect) {
+        if ( this.props.checkLogin() != null){
             return (
                 <Navigate replace to="/map" />
             );

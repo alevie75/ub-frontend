@@ -8,24 +8,8 @@ class Home extends React.Component {
         this.state = {redirect: null};
     }
 
-    componentDidMount() {
-        let redir = this.props.checkLogin()
-        if ( redir == null){
-            return
-        }
-        this.setState({redirect: redir});
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        let redir = this.props.checkLogin()
-        if ( redir == null){
-            return
-        }
-        this.setState({redirect: redir});
-    }
-
     render() {
-        if (this.state.redirect) {
+        if ( this.props.checkLogin() != null){
             return (
                 <Navigate replace to="/map" />
             );
