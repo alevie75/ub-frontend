@@ -22,10 +22,10 @@ class UBRoutes extends React.Component {
                 <Route path="/" element={<Home  checkLogin={this.props.checkLogin} basePath={this.props.basePath} />} />
                 <Route path="/login" element={<Login checkLogin={this.props.checkLogin} basePath={this.props.basePath} />} />
                 <Route path="/signup" element={<Register checkLogin={this.props.checkLogin} basePath={this.props.basePath} />} />
-                <Route path="/register" element={<Navigate replace to="/signup" />} basePath={this.props.basePath} />
+                <Route path="/register" element={<Navigate replace to="/signup" />} />
                 <Route path="/map" element={<UBMap checkLogin={this.props.checkLogin} basePath={this.props.basePath} />} />
                 <Route path="/profile" element={<Profile checkLogin={this.props.checkLogin} basePath={this.props.basePath} />} />
-                <Route path="/jobs" element={<Jobs checkLogin={this.props.checkLogin} />} basePath={this.props.basePath} />
+                <Route path="/jobs" element={<Jobs checkLogin={this.props.checkLogin} basePath={this.props.basePath} />}  />
             </Routes>
         );
     }
