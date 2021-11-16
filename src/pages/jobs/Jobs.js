@@ -1,8 +1,7 @@
 import React from "react";
 import {Link, Navigate} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container} from "reactstrap";
-import Cookies from "js-cookie";
+import {Container, Row, Col, Card, CardBody, CardTitle, CardText} from "reactstrap";
 
 class Jobs extends React.Component {
     constructor(props) {
@@ -11,7 +10,7 @@ class Jobs extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: [],
+            jobs: [],
             redirect: null
         };
     }
@@ -23,7 +22,7 @@ class Jobs extends React.Component {
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        items: result.items
+                        jobs: result.jobs
                     });
                 },
                 // Note: it's important to handle errors here
@@ -44,13 +43,30 @@ class Jobs extends React.Component {
                 <Navigate replace to="/login" />
             );
         }
+        const { error, isLoaded, jobs } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        }
         return (
             <div>
                 <Container>
+                    <h2 className="centered">Jobs</h2>
                     <Row xs={1} sm={2} lg={3}>
-                        {Object.keys({await this.getJobs()}).map((clubName) =>
+                        {jobs.map(job =>
                             <Col>
-                                <ClubBox key={clubName} name={clubName} details={this.state.clubs[clubName]} clubDetails={this.state.clubs} updateClubs={this.updateClubs}/>
+                                <Card>
+                                    <CardBody>
+                                        <CardTitle tag="h5">{job.customerID}</CardTitle>
+                                        <CardText>Location: {job["location"]}</CardText>
+                                        <CardText>Price: {job.price}</CardText>
+                                        <CardText>Status: {job['status']}</CardText>
+                                    </CardBody>
+                                    <CardBody>
+
+                                    </CardBody>
+                                </Card>
                             </Col>
                         )}
                     </Row>

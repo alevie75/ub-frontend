@@ -6,7 +6,7 @@ import MapPic from './images/Map.png'
 
 function Navbar() {
     return (
-        <div className="navbar" id="myNavbar">
+        <div className="UB_navbar" id="myNavbar">
             <div className="nav-icon-outer" id="jobs">
                 <Link to="/jobs">
                         <img className="nav-icon" src={ShovelIcon} alt="Jobs" />
